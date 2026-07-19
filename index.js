@@ -11,7 +11,7 @@ const app = express();
 
 // mongoose connection
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGO_URI);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

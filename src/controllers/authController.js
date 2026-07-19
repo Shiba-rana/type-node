@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { contactSchema } from "../models/crmModel.js";
+import Contact from "../models/crmModel.js";
 
 // Add contact
 const addContact = async (req, res) => {

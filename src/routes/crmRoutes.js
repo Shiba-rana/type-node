@@ -8,7 +8,7 @@ import {
 } from "../controllers/authController.js";
 
 const routes = (app) => {
-    app.routes('/contacts')
+    app.route('/contacts')
     .get((req, res, next) => {
         console.log(`Request from: ${req.originalUrl}`);
         console.log(`Request type: ${req.method}`);
@@ -23,3 +23,5 @@ const routes = (app) => {
     .put(updateContactById)
     .delete(deleteContactById);
 }
+
+export default routes;
