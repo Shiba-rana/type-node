@@ -1,66 +1,59 @@
-import mongoose from "mongoose";
+import { Request, Response } from "express";
 import Contact from "../models/crmModel.js";
 
 // Add contact
-const addContact = async (req, res) => {
-  let newContact = new Contact(req.body);
-
-  newContact.save((err, contact) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(201).send(contact);
-    }
-  });
+const addContact = async (req: Request, res: Response) => {
+  try {
+    const newContact = new Contact(req.body);
+    const savedContact = await newContact.save();
+    res.status(201).send(savedContact);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 };
 
 // Get all contacts
-const getAllContacts = async (req, res) => {
-  Contact.find({}, (err, contacts) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(contacts);
-    }
-  });
+const getAllContacts = async (req: Request, res: Response) => {
+  try {
+    const contacts = await Contact.find({});
+    res.status(200).send(contacts);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 };
 
 // Get contact by ID
-const getContactById = async (req, res) => {
-  Contact.findById(req.params.id, (err, contact) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(contact);
-    }
-  });
+const getContactById = async (req: Request, res: Response) => {
+  try {
+    const contact = await Contact.findById(req.params.id);
+    res.status(200).send(contact);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 };
 
 // Update contact by ID
-const updateContactById = async (req, res) => {
-  Contact.findOneAndUpdate(
-    { _id: req.params.contactId },
-    req.body,
-    { new: true },
-    (err, contact) => {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        res.status(200).send(contact);
-      }
-    },
-  );
+const updateContactById = async (req: Request, res: Response) => {
+  try {
+    const contact = await Contact.findOneAndUpdate(
+      { _id: req.params.id },
+      req.body,
+      { new: true },
+    );
+    res.status(200).send(contact);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 };
 
 // Delete contact by ID
-const deleteContactById = async (req, res) => {
-  Contact.findByIdAndRemove(req.params.id, (err, contact) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(contact);
-    }
-  });
+const deleteContactById = async (req: Request, res: Response) => {
+  try {
+    const contact = await Contact.findByIdAndDelete(req.params.id);
+    res.status(200).send(contact);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 };
 
 export {

@@ -4,14 +4,15 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import routes from './src/routes/crmRoutes.js';
  
-const PORT = process.env.PORT || 3000;
+const PORT: number = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 dotenv.config();
 
 const app = express();
 
 // mongoose connection
+const database: string = process.env.MONGODB_URI || 'mongodb://localhost:27017/crmDB';
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(database);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
