@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Contact from "../models/crmModel.js";
 
 // Add contact
-const addContact = async (req: Request, res: Response) => {
+const addContact = async (req: Request, res: Response): Promise<void> => {
   try {
     const newContact = new Contact(req.body);
     const savedContact = await newContact.save();
@@ -13,7 +13,7 @@ const addContact = async (req: Request, res: Response) => {
 };
 
 // Get all contacts
-const getAllContacts = async (req: Request, res: Response) => {
+const getAllContacts = async (req: Request, res: Response): Promise<void> => {
   try {
     const contacts = await Contact.find({});
     res.status(200).send(contacts);
@@ -23,7 +23,7 @@ const getAllContacts = async (req: Request, res: Response) => {
 };
 
 // Get contact by ID
-const getContactById = async (req: Request, res: Response) => {
+const getContactById = async (req: Request, res: Response): Promise<void> => {
   try {
     const contact = await Contact.findById(req.params.id);
     res.status(200).send(contact);
@@ -33,7 +33,7 @@ const getContactById = async (req: Request, res: Response) => {
 };
 
 // Update contact by ID
-const updateContactById = async (req: Request, res: Response) => {
+const updateContactById = async (req: Request, res: Response): Promise<void> => {
   try {
     const contact = await Contact.findOneAndUpdate(
       { _id: req.params.id },
@@ -47,7 +47,7 @@ const updateContactById = async (req: Request, res: Response) => {
 };
 
 // Delete contact by ID
-const deleteContactById = async (req: Request, res: Response) => {
+const deleteContactById = async (req: Request, res: Response): Promise<void> => {
   try {
     const contact = await Contact.findByIdAndDelete(req.params.id);
     res.status(200).send(contact);

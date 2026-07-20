@@ -1,10 +1,5 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = __importDefault(require("mongoose"));
-const contactSchema = new mongoose_1.default.Schema({
+import mongoose from 'mongoose';
+const contactSchema = new mongoose.Schema({
     firstName: {
         type: String,
         required: true
@@ -30,5 +25,5 @@ const contactSchema = new mongoose_1.default.Schema({
         default: Date.now
     }
 }, { timestamps: true });
-const Contact = mongoose_1.default.model('Contact', contactSchema);
-exports.default = Contact;
+const Contact = mongoose.model('Contact', contactSchema);
+export default Contact;
