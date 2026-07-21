@@ -18,23 +18,33 @@ const environment: Messagespace.Environment = 'development'
 // instantiate Messenger class
 const messages = new Messagespace.Messenger(Settings.PORT, environment);
 
-// Interface
+//! Interface
 interface Name {
   firstName: string;
   lastName: string;
 }
-
 const nameCreator = (name: Name): string => {
   return `Hello!, ${name.firstName} ${name.lastName}`;
 }
-
 let myName = { firstName: "Shiba", lastName: "Rana," }
 
-// Generic function
+
+//! Declaration Merging
+interface Person {
+  name: string;
+}
+interface Person {
+  age: number
+}
+const person: Person = {
+  name: "Shiva",
+  age: 22
+}
+
+//! Generic function
 const genericFunc = <T>(name: T): T => {
   return name;
 };
-
 let myGenericName = genericFunc<string>("Shiba Rana,");
 
 // mongoose connection

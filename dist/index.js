@@ -16,7 +16,11 @@ const nameCreator = (name) => {
     return `Hello!, ${name.firstName} ${name.lastName}`;
 };
 let myName = { firstName: "Shiba", lastName: "Rana," };
-// Generic function
+const person = {
+    name: "Shiva",
+    age: 22
+};
+//! Generic function
 const genericFunc = (name) => {
     return name;
 };
@@ -33,5 +37,5 @@ app.get("/", (req, res) => {
     res.send(`<h1>Welcome to the CRM API</h1><p>${messages.messagePrint()}</p>`);
 });
 app.listen(Settings.PORT, () => {
-    console.log(myGenericName, messages.messagePrint());
+    console.log(person, messages.messagePrint());
 });
