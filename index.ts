@@ -18,6 +18,25 @@ const environment: Environment = 'development'
 // instantiate Messenger class
 const messages = new Messenger(Settings.PORT, environment);
 
+// Interface
+interface Name {
+  firstName: string;
+  lastName: string;
+}
+
+const nameCreator = (name: Name): string => {
+  return `Hello!, ${name.firstName} ${name.lastName}`;
+}
+
+let myName = { firstName: "Shiba", lastName: "Rana," }
+
+// Generic function
+const genericFunc = <T>(name: T): T => {
+  return name;
+};
+
+let myGenericName = genericFunc<string>("Shiba Rana,");
+
 // mongoose connection
 const database: string =
   process.env.MONGODB_URI || "mongodb://localhost:27017/crmDB";
@@ -38,5 +57,5 @@ app.get("/", (req: Request, res: Response): any => {
 });
 
 app.listen(Settings.PORT, () => {
-  console.log(messages.messagePrint());
+  console.log(myGenericName, messages.messagePrint());
 });
