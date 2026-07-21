@@ -4,15 +4,16 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import routes from "./src/routes/crmRoutes.js";
 import messenger from "./src/controllers/createMessage.js";
+import { Settings} from './settings.js'
 import { Request, Response } from "express";
 
-const PORT: number = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+// const PORT: number = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 dotenv.config();
 
 const app = express();
 
 // instantiate Messenger class
-const messages = new messenger(PORT);
+const messages = new messenger(Settings.PORT);
 
 // mongoose connection
 const database: string =
@@ -33,6 +34,6 @@ app.get("/", (req: Request, res: Response): any => {
   );
 });
 
-app.listen(PORT, () => {
+app.listen(Settings.PORT, () => {
   console.log(messages.messagePrint());
 });
