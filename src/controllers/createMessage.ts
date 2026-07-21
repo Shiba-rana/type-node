@@ -1,12 +1,17 @@
+export type Environment = "development" | "production" | "test";
+
+
 class Messenger {
     port: number;
+    environment: Environment;
 
-    constructor(port: number) {
+    constructor(port: number, environment: Environment) {
         this.port = port;
+        this.environment = environment;
     }
 
     messagePrint() {
-        return `Messenger is running on port ${this.port}`;
+        return `Messenger is running on port ${this.port} in ${this.environment} environment`;
     }
 }
 

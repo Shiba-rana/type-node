@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import routes from "./src/routes/crmRoutes.js";
-import messenger from "./src/controllers/createMessage.js";
+import  Messenger,{ Environment} from "./src/controllers/createMessage.js";
 import { Settings} from './settings.js'
 import { Request, Response } from "express";
 
@@ -12,8 +12,11 @@ dotenv.config();
 
 const app = express();
 
+// Envvironment Constant
+const environment: Environment = 'development'
+
 // instantiate Messenger class
-const messages = new messenger(Settings.PORT);
+const messages = new Messenger(Settings.PORT, environment);
 
 // mongoose connection
 const database: string =
