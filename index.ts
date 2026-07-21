@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import routes from "./src/routes/crmRoutes.js";
-import  Messenger,{ Environment} from "./src/controllers/createMessage.js";
+import  Messagespace from "./src/controllers/createMessage.js";
 import { Settings} from './settings.js'
 import { Request, Response } from "express";
 
@@ -13,10 +13,10 @@ dotenv.config();
 const app = express();
 
 // Envvironment Constant
-const environment: Environment = 'development'
+const environment: Messagespace.Environment = 'development'
 
 // instantiate Messenger class
-const messages = new Messenger(Settings.PORT, environment);
+const messages = new Messagespace.Messenger(Settings.PORT, environment);
 
 // Interface
 interface Name {
